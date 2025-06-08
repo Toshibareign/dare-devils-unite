@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'game-purple': '#8B5CF6',
+				'game-blue': '#3B82F6',
+				'game-pink': '#EC4899',
+				'game-cyan': '#06B6D4',
+				'neon-green': '#10B981',
+				'electric-blue': '#2563EB'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +91,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-20px)' }
+				},
+				'glow': {
+					'0%, 100%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.5)' },
+					'50%': { boxShadow: '0 0 40px rgba(139, 92, 246, 0.8)' }
+				},
+				'pulse-scale': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.05)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'glow': 'glow 2s ease-in-out infinite',
+				'pulse-scale': 'pulse-scale 2s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'game-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+				'truth-gradient': 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)',
+				'dare-gradient': 'linear-gradient(135deg, #EC4899 0%, #EF4444 100%)',
+				'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)'
 			}
 		}
 	},
