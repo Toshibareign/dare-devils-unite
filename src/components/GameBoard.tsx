@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -47,10 +46,16 @@ export const GameBoard = ({ gameMode }: GameBoardProps) => {
       { id: '4', type: 'dare', text: 'Do 20 push-ups or jumping jacks!', difficulty: 'medium', category: 'physical' }
     ],
     adults: [
-      { id: '1', type: 'truth', text: 'What is something you did that you never told anyone about?', difficulty: 'hard', category: 'secrets' },
-      { id: '2', type: 'dare', text: 'Call someone you haven\'t talked to in over a year!', difficulty: 'hard', category: 'social' },
-      { id: '3', type: 'truth', text: 'What is your biggest regret in life so far?', difficulty: 'hard', category: 'deep' },
-      { id: '4', type: 'dare', text: 'Share an embarrassing photo from your camera roll!', difficulty: 'medium', category: 'social' }
+      { id: '1', type: 'truth', text: 'What is a life lesson you learned the hard way that you wish you could share with your younger self?', difficulty: 'medium', category: 'wisdom' },
+      { id: '2', type: 'dare', text: 'Share a skill or talent you have that most people don\'t know about by demonstrating it!', difficulty: 'medium', category: 'talent' },
+      { id: '3', type: 'truth', text: 'What is a professional goal you\'re working toward that excites and terrifies you at the same time?', difficulty: 'hard', category: 'career' },
+      { id: '4', type: 'dare', text: 'Call or text someone you admire professionally and tell them how they\'ve influenced your career!', difficulty: 'hard', category: 'networking' },
+      { id: '5', type: 'truth', text: 'What is a personal habit or mindset you\'ve changed that has significantly improved your quality of life?', difficulty: 'medium', category: 'growth' },
+      { id: '6', type: 'dare', text: 'Share your most embarrassing adult moment in a funny, storytelling way!', difficulty: 'medium', category: 'storytelling' },
+      { id: '7', type: 'truth', text: 'What is something you believed about adulthood as a child that turned out to be completely wrong?', difficulty: 'easy', category: 'perspective' },
+      { id: '8', type: 'dare', text: 'Give everyone present a genuine, specific compliment about their character or achievements!', difficulty: 'easy', category: 'appreciation' },
+      { id: '9', type: 'truth', text: 'What is a decision you made that seemed small at the time but ended up changing your life trajectory?', difficulty: 'hard', category: 'reflection' },
+      { id: '10', type: 'dare', text: 'Teach everyone a practical life skill you\'ve mastered in under 3 minutes!', difficulty: 'medium', category: 'education' }
     ],
     couples: [
       { id: '1', type: 'truth', text: 'What was your first impression of me when we met?', difficulty: 'medium', category: 'relationship' },
