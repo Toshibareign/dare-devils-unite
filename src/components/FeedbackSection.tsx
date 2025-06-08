@@ -6,6 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Star, Send, MessageSquare, ThumbsUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { EmojiReactions } from "./EmojiReactions";
+import { ReplySystem } from "./ReplySystem";
 
 export const FeedbackSection = () => {
   const [rating, setRating] = useState(0);
@@ -143,25 +145,43 @@ export const FeedbackSection = () => {
           
           {[
             {
+              id: "review-1",
               name: "Alex M.",
               rating: 5,
               comment: "Amazing game! Perfect for parties and family gatherings. The different modes are so thoughtful!",
-              timeAgo: "2 days ago"
+              timeAgo: "2 days ago",
+              reactions: [
+                { emoji: '👍', count: 12, hasReacted: false },
+                { emoji: '❤️', count: 8, hasReacted: false }
+              ],
+              replies: []
             },
             {
+              id: "review-2",
               name: "Sarah K.",
               rating: 4,
               comment: "Love the story feed feature. It's so fun to read what others have shared!",
-              timeAgo: "1 week ago"
+              timeAgo: "1 week ago",
+              reactions: [
+                { emoji: '👍', count: 6, hasReacted: true },
+                { emoji: '😂', count: 2, hasReacted: false }
+              ],
+              replies: []
             },
             {
+              id: "review-3",
               name: "Mike R.",
               rating: 5,
               comment: "The couples mode is fantastic! Great way to connect with my partner.",
-              timeAgo: "3 days ago"
+              timeAgo: "3 days ago",
+              reactions: [
+                { emoji: '❤️', count: 15, hasReacted: false },
+                { emoji: '🔥', count: 4, hasReacted: false }
+              ],
+              replies: []
             }
-          ].map((review, index) => (
-            <Card key={index} className="game-card">
+          ].map((review) => (
+            <Card key={review.id} className="game-card">
               <CardContent className="p-4">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
@@ -176,13 +196,30 @@ export const FeedbackSection = () => {
                     ))}
                   </div>
                 </div>
-                <p className="text-muted-foreground text-sm mb-2">{review.comment}</p>
-                <div className="flex items-center justify-between">
+                <p className="text-muted-foreground text-sm mb-3">{review.comment}</p>
+                
+                {/* Emoji Reactions */}
+                <div className="mb-3">
+                  <EmojiReactions 
+                    itemId={review.id} 
+                    initialReactions={review.reactions}
+                  />
+                </div>
+                
+                <div className="flex items-center justify-between border-t border-white/10 pt-3">
                   <span className="text-xs text-muted-foreground">{review.timeAgo}</span>
                   <Button variant="ghost" size="sm" className="text-game-purple hover:text-game-purple/80">
                     <ThumbsUp className="h-3 w-3 mr-1" />
                     Helpful
                   </Button>
+                </div>
+                
+                {/* Reply System */}
+                <div className="mt-3">
+                  <ReplySystem 
+                    itemId={review.id} 
+                    initialReplies={review.replies}
+                  />
                 </div>
               </CardContent>
             </Card>

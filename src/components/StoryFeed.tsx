@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,6 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Heart, MessageCircle, Star, Plus, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { EmojiReactions } from "./EmojiReactions";
+import { ReplySystem } from "./ReplySystem";
 
 interface Story {
   id: string;
@@ -18,6 +19,8 @@ interface Story {
   category: string;
   timeAgo: string;
   isLiked: boolean;
+  reactions: any[];
+  replies: any[];
 }
 
 export const StoryFeed = () => {
@@ -31,7 +34,12 @@ export const StoryFeed = () => {
       comments: 23,
       category: 'Embarrassing',
       timeAgo: '2 hours ago',
-      isLiked: false
+      isLiked: false,
+      reactions: [
+        { emoji: '😂', count: 15, hasReacted: false },
+        { emoji: '😮', count: 8, hasReacted: false }
+      ],
+      replies: []
     },
     {
       id: '2',
@@ -42,7 +50,12 @@ export const StoryFeed = () => {
       comments: 156,
       category: 'Romance',
       timeAgo: '5 hours ago',
-      isLiked: true
+      isLiked: true,
+      reactions: [
+        { emoji: '❤️', count: 45, hasReacted: true },
+        { emoji: '😮', count: 12, hasReacted: false }
+      ],
+      replies: []
     },
     {
       id: '3',
@@ -53,7 +66,12 @@ export const StoryFeed = () => {
       comments: 67,
       category: 'Food',
       timeAgo: '1 day ago',
-      isLiked: false
+      isLiked: false,
+      reactions: [
+        { emoji: '😮', count: 20, hasReacted: false },
+        { emoji: '🔥', count: 5, hasReacted: false }
+      ],
+      replies: []
     }
   ]);
 
@@ -96,7 +114,9 @@ export const StoryFeed = () => {
       comments: 0,
       category: storyCategory,
       timeAgo: 'just now',
-      isLiked: false
+      isLiked: false,
+      reactions: [],
+      replies: []
     };
 
     setStories(prev => [story, ...prev]);
@@ -242,25 +262,40 @@ export const StoryFeed = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-white/10">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => toggleLike(story.id)}
-                  className={`${story.isLiked ? 'text-red-400 hover:text-red-300' : 'text-muted-foreground hover:text-red-400'}`}
-                >
-                  <Heart className={`h-4 w-4 mr-1 ${story.isLiked ? 'fill-current' : ''}`} />
-                  {story.likes}
-                </Button>
-                
-                <Button size="sm" variant="ghost" className="text-muted-foreground hover:text-blue-400">
-                  <MessageCircle className="h-4 w-4 mr-1" />
-                  {story.comments}
-                </Button>
-                
-                <Button size="sm" variant="ghost" className="text-muted-foreground hover:text-yellow-400">
-                  <Star className="h-4 w-4" />
-                </Button>
+              <div className="space-y-3">
+                {/* Emoji Reactions */}
+                <EmojiReactions 
+                  itemId={story.id} 
+                  initialReactions={story.reactions}
+                />
+
+                {/* Action Buttons */}
+                <div className="flex items-center justify-between pt-2 border-t border-white/10">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => toggleLike(story.id)}
+                    className={`${story.isLiked ? 'text-red-400 hover:text-red-300' : 'text-muted-foreground hover:text-red-400'}`}
+                  >
+                    <Heart className={`h-4 w-4 mr-1 ${story.isLiked ? 'fill-current' : ''}`} />
+                    {story.likes}
+                  </Button>
+                  
+                  <Button size="sm" variant="ghost" className="text-muted-foreground hover:text-blue-400">
+                    <MessageCircle className="h-4 w-4 mr-1" />
+                    {story.comments}
+                  </Button>
+                  
+                  <Button size="sm" variant="ghost" className="text-muted-foreground hover:text-yellow-400">
+                    <Star className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                {/* Reply System */}
+                <ReplySystem 
+                  itemId={story.id} 
+                  initialReplies={story.replies}
+                />
               </div>
             </CardContent>
           </Card>

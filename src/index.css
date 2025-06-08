@@ -45,6 +45,16 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 263 70% 50%;
+
+    /* Theme variables */
+    --theme-primary: #8B5CF6;
+    --theme-secondary: #3B82F6;
+    --theme-accent: #EC4899;
+    --theme-background: #0f0f23;
+    --theme-foreground: #ffffff;
+    --theme-hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    --theme-truth-gradient: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+    --theme-dare-gradient: linear-gradient(135deg, #EC4899 0%, #EF4444 100%);
   }
 }
 
@@ -55,7 +65,7 @@
 
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+    background: linear-gradient(135deg, var(--theme-background) 0%, #1a1a2e 50%, #16213e 100%);
     min-height: 100vh;
   }
 }
@@ -66,11 +76,13 @@
   }
   
   .truth-card {
-    @apply bg-gradient-to-br from-blue-500/20 to-purple-600/20 border-blue-400/30;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+    border-color: rgba(59, 130, 246, 0.3);
   }
   
   .dare-card {
-    @apply bg-gradient-to-br from-pink-500/20 to-red-600/20 border-pink-400/30;
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(239, 68, 68, 0.2) 100%);
+    border-color: rgba(236, 72, 153, 0.3);
   }
   
   .glow-button {
@@ -84,5 +96,30 @@
   
   .glow-button:hover::before {
     @apply translate-x-full;
+  }
+
+  /* Theme-aware game colors */
+  .game-purple {
+    color: var(--theme-primary);
+  }
+  
+  .game-blue {
+    color: var(--theme-secondary);
+  }
+  
+  .game-pink {
+    color: var(--theme-accent);
+  }
+  
+  .bg-game-purple {
+    background-color: var(--theme-primary);
+  }
+  
+  .bg-game-blue {
+    background-color: var(--theme-secondary);
+  }
+  
+  .bg-game-pink {
+    background-color: var(--theme-accent);
   }
 }
