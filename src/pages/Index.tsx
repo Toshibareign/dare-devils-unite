@@ -9,6 +9,7 @@ import { UserProfile } from "@/components/UserProfile";
 import { GameModeSelector } from "@/components/GameModeSelector";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
+import { FeedbackSection } from "@/components/FeedbackSection";
 import { Users, Star, Heart, MessageCircle } from "lucide-react";
 
 const Index = () => {
@@ -112,6 +113,9 @@ const Index = () => {
                 </Button>
               </div>
             </section>
+
+            {/* Feedback Section */}
+            <FeedbackSection />
           </div>
         );
     }
