@@ -1,12 +1,11 @@
 
 import { useState } from 'react';
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Star, Heart, Users, Clock, ArrowUp, Trophy, Target, Zap } from "lucide-react";
+import { Star, Heart, Users, ArrowUp, Trophy, Target, Zap } from "lucide-react";
 
 export const UserProfile = () => {
   const [userStats] = useState({

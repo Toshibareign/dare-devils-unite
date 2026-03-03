@@ -113,8 +113,10 @@ export const FeedbackSection = () => {
                   placeholder="Tell us what you loved or what we could improve..."
                   value={feedback}
                   onChange={(e) => setFeedback(e.target.value)}
+                  maxLength={1000}
                   className="min-h-[120px] resize-none"
                 />
+                <p className="text-xs text-muted-foreground text-right">{feedback.length}/1000</p>
               </div>
 
               {/* Submit Button */}

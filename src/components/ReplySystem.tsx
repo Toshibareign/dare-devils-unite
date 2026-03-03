@@ -31,7 +31,8 @@ export const ReplySystem: React.FC<ReplySystemProps> = ({
   const [showReplyForm, setShowReplyForm] = useState(false);
 
   const handleAddReply = () => {
-    if (!newReply.trim()) return;
+    const trimmedReply = newReply.trim();
+    if (!trimmedReply || trimmedReply.length > 500) return;
 
     const reply: Reply = {
       id: Date.now().toString(),
@@ -79,8 +80,10 @@ export const ReplySystem: React.FC<ReplySystemProps> = ({
               value={newReply}
               onChange={(e) => setNewReply(e.target.value)}
               rows={3}
+              maxLength={500}
               className="bg-slate-800/50 border-white/10 resize-none"
             />
+            <p className="text-xs text-muted-foreground text-right">{newReply.length}/500</p>
             <div className="flex gap-2">
               <Button
                 onClick={handleAddReply}
