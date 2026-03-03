@@ -96,10 +96,27 @@ export const StoryFeed = () => {
   };
 
   const submitStory = () => {
-    if (!newStory.trim() || !storyCategory) {
+    const trimmedStory = newStory.trim();
+    if (!trimmedStory || !storyCategory) {
       toast({
         title: "Missing Information",
         description: "Please fill in all fields before submitting!",
+        variant: "destructive"
+      });
+      return;
+    }
+    if (trimmedStory.length < 10) {
+      toast({
+        title: "Story Too Short",
+        description: "Your story must be at least 10 characters long.",
+        variant: "destructive"
+      });
+      return;
+    }
+    if (trimmedStory.length > 1000) {
+      toast({
+        title: "Story Too Long",
+        description: "Your story must be under 1000 characters.",
         variant: "destructive"
       });
       return;
@@ -211,8 +228,10 @@ export const StoryFeed = () => {
               value={newStory}
               onChange={(e) => setNewStory(e.target.value)}
               rows={4}
+              maxLength={1000}
               className="bg-slate-800/50 border-white/10 resize-none"
             />
+            <p className="text-xs text-muted-foreground text-right">{newStory.length}/1000</p>
 
             <div className="flex gap-4">
               <Button onClick={submitStory} className="flex-1 bg-gradient-to-r from-neon-green to-green-600">
